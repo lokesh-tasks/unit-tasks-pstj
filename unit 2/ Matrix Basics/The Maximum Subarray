@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+public class Solution {
+    public static int[] maxSubarray(int[] arr) {
+        int maxSubarray = arr[0];
+        int currentSum = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSubarray = Math.max(maxSubarray, currentSum);
+        }
+        int maxSubsequence = 0;
+        int largestNegative = arr[0];
+        for (int num : arr) {
+            if (num > 0) {
+                maxSubsequence += num;
+            }
+            largestNegative = Math.max(largestNegative, num);
+        }
+        if (maxSubsequence == 0) {
+            maxSubsequence = largestNegative;
+        }
+        return new int[]{maxSubarray, maxSubsequence};
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br =
+                new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine());
+            int[] arr = new int[n];
+            StringTokenizer st =
+                    new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(st.nextToken());
+            }
+            int[] result = maxSubarray(arr);
+            System.out.println(result[0] + " " + result[1]);
+        }
+    }
+}
+
+
+Input 
+2
+4
+1 2 3 4
+6
+2 -1 2 3 4 -5
+Output 
+10 10
+10 11
