@@ -1,3 +1,6 @@
+String Handling Basics:
+
+
 import java.io.*;
 public class Solution {
     public static int alternatingCharacters(String s) {
