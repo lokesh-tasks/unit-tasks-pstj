@@ -1,3 +1,6 @@
+constraint-driven solution design:
+
+
 class Solution {
     public boolean halvesAreAlike(String s) {
         int count = 0;
